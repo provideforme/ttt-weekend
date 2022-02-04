@@ -90,28 +90,24 @@
   // 6.3) Do steps 4.1 (initialize the state variables) and 4.2 (render).
 
 /*-------------------------------- Constants --------------------------------*/
-const players = {
-  '1': {
-    name: 'playerX',
-    score: 0
-  },
-  '-1': {
-    name: 'player0',
-    score: 0
-  }
-};
+const playerX = 1
+const playerO = -1
+
+
+console.log(playerO)
 
 const winningCombos = [
-  combo1 = [sq0, sq1, sq2],
-  combo2 = [sq3, sq4, sq5],
-  combo3 = [sq6, sq7, sq8],
-  combo4 = [sq0, sq3, sq6],
-  combo5 = [sq1, sq4, sq7],
-  combo6 = [sq2, sq5, sq6],
-  combo7 = [sq0, sq4, sq8],
-  combo8 = [sq6, sq4, sq2],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 6],
+  [0, 4, 8],
+  [6, 4, 2],
 ]
 console.log(winningCombos)
+
 
 
 /*]---------------------------- Variables (state) ----------------------------*/
@@ -135,7 +131,8 @@ let squares, turn, winner
 	
 	// 2.1) Store the 9 elements that represent the squares on the page.
 	  // You may want to give each square a class name in your HTML to make this easier!
-    const allSquares = document.querySelectorAll('.sq')
+    const allSquares = Array.from(document.querySelectorAll('.sq'))
+
 	// 2.2) Store the element that displays the game status on the page.
     const gameStatus = document.querySelector('#message')
 
@@ -151,30 +148,76 @@ allSquares.forEach(square => square.addEventListener('click', handleClick ))
 // squares = Array.prototype.slice.call(allSquares).fill(null)
 
 //       console.log(squares)
-// init()
+
 
 function init(){
 // 3.2) That initialize function should initialize the state variables:
-	  // 3.2.1) Initialize the board array to 9 nulls to represent empty squares. 
-  // squares = Array.prototype.slice.call(allSquares).fill(null)
-  allSquares = [null, null, null, null, null, null, null, null, null]
+// 3.2.1) Initialize the board array to 9 nulls to represent empty squares. 
+// The 9 elements will "map" to each square.
+// Index 0 represents the top-left square.
+// Index 1 represents the top-middle square.
+// So on, continuing through the entire board until...
+// Index 8 maps to the bottom-right square.
+  squares = [null, null, null, null, null, null, null, null, null, ]
+  console.log(squares)
+  
+  // 3.2.2) Initialize whose turn it is to 1 (player 'X'). 
+  // Player 'O' will be represented by -1.
+  turn = 1
 
-      console.log(allSquares)
-
-	    // The 9 elements will "map" to each square.
-	    // Index 0 represents the top-left square.
-	    // Index 1 represents the top-middle square.
-			// So on, continuing through the entire board until...
-	    // Index 8 maps to the bottom-right square.
-	  // 3.2.2) Initialize whose turn it is to 1 (player 'X'). 
-	    // Player 'O' will be represented by -1.
-	  // 3.2.3) Initialize the winner variable to null.
-	    // This represents that there is no winner or tie yet. 
-	    // The winner variable will hold the player value (1 or -1) if there's a winner. 
+  console.log(turn)
+  // 3.2.3) Initialize the winner variable to null.
+  // This represents that there is no winner or tie yet. 
+  // The winner variable will hold the player value (1 or -1) if there's a winner. 
 	    // The winner will hold a 'T' if there's a tie.
+      winner = null
+  resetBtn.setAttribute("hidden", true)
 	  // 3.2.4) Render those state variables to the page by calling a render function.
+    render()
 }
+
+init()
 	
 function handleClick (event) {
   console.log(event.target.id)
 }
+
+
+// 3.3) The render function should:
+	  // 3.3.1) Loop over the board array (which represents the squares on the page), and for each iteration:
+		  // 3.3.1.1) Use the index of the iteration to access the square in the squares array that corresponds with the current cell being iterated over in the board array
+		  // 3.3.1.2) Style that square however you wish dependant on the value contained in the current cell being iterated over (-1, 1, or null)
+      
+      function render(){
+        for (let i = 0; i < allSquares.length; i++) {
+          if(squares[i] === 1){
+            allSquares[i].textContent = "X";
+            gameStatus.textContent = "It is O's turn"  
+          }
+            else if(squares[i] === -1){
+              allSquares[i].textContent = "O"
+              return gameStatus.textContent = "It is O's turn"
+            } else {
+              allSquares[i].textContent = null
+            }
+          };
+          if(winner !== null){
+            turn = turn * -1
+          } else if (winner === null){
+          
+          }
+        }
+
+  function checkWinner(){
+
+  }
+        // 3.3.2) Render a message reflecting the currrent game state:
+          // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
+            // Hint: Maybe use a ternary inside of a template literal here?
+          // 3.3.2.2) If winner is equal to 'T' (tie), render a tie message.
+          // 3.3.2.3) Otherwise, render a congratulatory message to which player has won.
+            // Hint (again): Maybe use a ternary inside a template literal here
+      
+        // 3.4) After completing this step, you should be able to manually change the values held in the board array in the initialization function and see the style of the corresponding square change on your page.
+
+
