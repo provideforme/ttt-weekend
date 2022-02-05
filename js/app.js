@@ -140,14 +140,15 @@ let squares, turn, winner
     
     console.log(allSquares)
 /*----------------------------- Event Listeners -----------------------------*/
+// 5) Wait for click on a square, call a handleClick function
+  // handleClick function will...
+  // 5.1) Obtain the index of the square that was clicked by:
+	  // 5.1.1) "Extracting" the index from square id assigned 
+		// Hint: Each id corresponds with an index in our board array, 
+    //       how could these be used if we cleaned them up a bit?
 allSquares.forEach(square => square.addEventListener('click', handleClick ))
 
 /*-------------------------------- Functions --------------------------------*/
-// 3.1) Call an initialize function
-
-// squares = Array.prototype.slice.call(allSquares).fill(null)
-
-//       console.log(squares)
 
 
 function init(){
@@ -177,9 +178,19 @@ function init(){
 }
 
 init()
-	
+
+// 5.2) If the board has a value at the index, return because that square is already taken.
+
+// 5.3) If winner is not null, immediately return because the game is over.
+
+// 5.4) Update the board array at the index with the value of turn.
+
+// 5.5) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
 function handleClick (event) {
-  console.log(event.target.id)
+  const click = event.target.id
+  const squareIndex = parseInt(click.getAttribute('.sq'))
+
+  }
 }
 
 
@@ -203,19 +214,22 @@ function handleClick (event) {
           };
           if(winner !== null){
             turn = turn * -1
-          } else if (winner === null){
-          
+          } else if (winner === "T"){
+            gameStatus.textContent = `Uh-oh, It seems we have a draw!`
+          }else{
+            gameStatus.textContent = `Holy cow you did it`
           }
         }
 
-  function checkWinner(){
 
-  }
+        function checkWinner(){
+          
+        }
         // 3.3.2) Render a message reflecting the currrent game state:
-          // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
-            // Hint: Maybe use a ternary inside of a template literal here?
-          // 3.3.2.2) If winner is equal to 'T' (tie), render a tie message.
-          // 3.3.2.3) Otherwise, render a congratulatory message to which player has won.
+        // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
+        // Hint: Maybe use a ternary inside of a template literal here?
+        // 3.3.2.2) If winner is equal to 'T' (tie), render a tie message.
+        // 3.3.2.3) Otherwise, render a congratulatory message to which player has won.
             // Hint (again): Maybe use a ternary inside a template literal here
       
         // 3.4) After completing this step, you should be able to manually change the values held in the board array in the initialization function and see the style of the corresponding square change on your page.
