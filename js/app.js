@@ -165,7 +165,7 @@ function init(){
   // This represents that there is no winner or tie yet. 
   // The winner variable will hold the player value (1 or -1) if there's a winner. 
 	    // The winner will hold a 'T' if there's a tie.
-      winner = null
+  winner = null
   resetBtn.setAttribute("hidden", true)
 	  // 3.2.4) Render those state variables to the page by calling a render function.
     render()
@@ -186,7 +186,8 @@ if (squares[index] !== null){
   return
 }
 squares[index] = turn
-turn *= -1
+turn *= -1 
+checkWinner()
 console.log(squares)
 render()
   }
@@ -226,12 +227,18 @@ render()
      // Choose only one path.
         
         function checkWinner(){
-          for (let i = 0; i <= 7; i++){
-            let winningCombo = winningCombos[i];
-            
+          winningCombos.forEach(winningCombo => {
+            if(Math.abs(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]]) === 3){
+            winner = null
+            } else if (squares.every(square => square)){
+            return winner === 'tie'
+            }
+          })
+          console.log(winner)
           }
-        }
-
+          
+          
+checkWinner()
 
     
 		  // 5.6.1.1) Loop through the each of the winning combination arrays defined.
