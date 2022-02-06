@@ -205,6 +205,9 @@ render()
           }
         };
         
+        if (winner !== null){
+
+        } 
         // gameStatus.textContent = "It is O's turn"  
         // return gameStatus.textContent = "It is O's turn"
           // if(winner ===  1){
@@ -216,10 +219,39 @@ render()
           // } 
         }
 
-
-        function checkWinner(){
+        // 5.6.1) There are a couple methods you can use to find out if there is a winner.
+     // This is the first, more elegant way that takes advantage of the winningCombos array you wrote above in step 4.
+     // The 5.6.2 step is a little simpler to comprehend, but you'll need to write a lot more code.
+     // The 5.6.2 step also won't take advantage of the winningCombos array, but using it as a reference will help you build a solution.
+     // Choose only one path.
         
+        function checkWinner(){
+          for (let i = 0; i <= 7; i++){
+            let winningCombo = winningCombos[i];
+            
+          }
         }
+
+
+    
+		  // 5.6.1.1) Loop through the each of the winning combination arrays defined.
+		  // 5.6.1.2) Total up the three board positions using the three indexes in the current combo.
+		  // 5.6.1.3) Convert the total to an absolute value (convert any negative total to positive).
+		  // 5.6.1.4) If the total equals 3, we have a winner! Set the winner variable to the board's value at the index specified by the first index of that winning combination's array by returning that value.
+
+		// 5.6.2) This solution is less elegant, but might be easier to write on your own if you're struggling with the 5.6.1.X pseudocode.
+		  // 5.6.2.1) For each one of the winning combinations you wrote in step 4, find the total of each winning combination.
+		  // 5.6.2.2) Convert the total to an absolute value (convert any negative total to positive)
+		  // 5.6.2.3) If the total equals 3, we have a winner! Set the winner variable to the board's value at the index specified by the first index of that winning combination's array by returning that value.
+
+		// 5.6.3) Next, If there's no winner, check if there's a tie:
+
+		// 5.6.4) Set the winner varible to "T" if there are no more nulls in the board array by returning the string "T".
+
+		// 5.6.5) Otherwise return null.
+
+// 5.7) All state has been updated, so render the state to the page (step 3.3).
+
         // 3.3.2) Render a message reflecting the currrent game state:
         // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
         // Hint: Maybe use a ternary inside of a template literal here?
