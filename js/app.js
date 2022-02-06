@@ -152,18 +152,12 @@ allSquares.forEach(square => square.addEventListener('click', handleClick ))
 
 
 function init(){
-// 3.2) That initialize function should initialize the state variables:
-// 3.2.1) Initialize the board array to 9 nulls to represent empty squares. 
-// The 9 elements will "map" to each square.
-// Index 0 represents the top-left square.
-// Index 1 represents the top-middle square.
-// So on, continuing through the entire board until...
-// Index 8 maps to the bottom-right square.
-  squares = [null, null, null, null, null, null, null, null, null, ]
+  squares = [
+    null, null, null,
+    null, null, null, 
+    null, null, null,]
   console.log(squares)
   
-  // 3.2.2) Initialize whose turn it is to 1 (player 'X'). 
-  // Player 'O' will be represented by -1.
   turn = 1
 
   console.log(turn)
@@ -179,51 +173,52 @@ function init(){
 
 init()
 
-// 5.2) If the board has a value at the index, return because that square is already taken.
+
 
 // 5.3) If winner is not null, immediately return because the game is over.
 
-// 5.4) Update the board array at the index with the value of turn.
-
-// 5.5) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
 function handleClick (event) {
-  const click = event.target.id
-  const squareIndex = parseInt(click.getAttribute('.sq'))
 
-  }
+
+console.log(event.target.id.replace('sq', ''))
+const index = event.target.id.replace('sq', '')
+if (squares[index] !== null){
+  return
 }
+squares[index] = turn
+turn *= -1
+console.log(squares)
+render()
+  }
 
 
-// 3.3) The render function should:
-	  // 3.3.1) Loop over the board array (which represents the squares on the page), and for each iteration:
-		  // 3.3.1.1) Use the index of the iteration to access the square in the squares array that corresponds with the current cell being iterated over in the board array
-		  // 3.3.1.2) Style that square however you wish dependant on the value contained in the current cell being iterated over (-1, 1, or null)
       
       function render(){
         for (let i = 0; i < allSquares.length; i++) {
           if(squares[i] === 1){
             allSquares[i].textContent = "X";
-            gameStatus.textContent = "It is O's turn"  
           }
-            else if(squares[i] === -1){
-              allSquares[i].textContent = "O"
-              return gameStatus.textContent = "It is O's turn"
-            } else {
-              allSquares[i].textContent = null
-            }
-          };
-          if(winner !== null){
-            turn = turn * -1
-          } else if (winner === "T"){
-            gameStatus.textContent = `Uh-oh, It seems we have a draw!`
-          }else{
-            gameStatus.textContent = `Holy cow you did it`
+          else if(squares[i] === -1){
+            allSquares[i].textContent = "O"
+          } else {
+            
           }
+        };
+        
+        // gameStatus.textContent = "It is O's turn"  
+        // return gameStatus.textContent = "It is O's turn"
+          // if(winner ===  1){
+          //   else if (winner === "T"){
+          //     gameStatus.textContent = `Uh-oh, It seems we have a draw!`
+          //   }else{
+          //     gameStatus.textContent = `Holy cow you did it`
+          //   }
+          // } 
         }
 
 
         function checkWinner(){
-          
+        
         }
         // 3.3.2) Render a message reflecting the currrent game state:
         // 3.3.2.1) If winner has a value other than null (game still in progress), render whose turn it is.
