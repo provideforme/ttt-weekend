@@ -97,9 +97,9 @@ function checkWinner(){
     message = "Congratulations X, you are the champion"
     } else if(Math.abs(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]]) === -3){
     winner = -1
-    message = "Congratulations 0, you are the champion"
+    message = "Congratulations O, you are the champion"
     }
-    else if (turnCount === 9){
+    else if (turnCount === 9 && !winner){
     winner = 'T'
     message = "It's a tie! Wanna play again?"
     }
