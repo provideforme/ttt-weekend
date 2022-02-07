@@ -28,5 +28,5 @@ div.sq {
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
 }
