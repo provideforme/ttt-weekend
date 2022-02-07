@@ -44,7 +44,7 @@ function init(){
     null, null, null,
     null, null, null, 
     null, null, null,]
-  message = "Let X start the game"
+  message = "Let X Start The Game"
   turn = 1
   turnCount = 0
   winner = null
@@ -72,7 +72,7 @@ const index = event.target.id.replace('sq', '')
 if (winner){
   return
 }
-if (squares[i] !== null){
+if (squares[index] !== null){
   return
 }
 squares[index] = turn
