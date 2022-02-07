@@ -37,7 +37,7 @@ allSquares.forEach(square => square.addEventListener('click', handleClick ))
 resetBtn.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
-
+init()
 
 function init(){
   squares = [
@@ -53,9 +53,26 @@ function init(){
   render()
 }
 
+function render(){
+  gameStatus.textContent = message
+  for (let i = 0; i < allSquares.length; i++) {
+    if(squares[i] === 1){
+      allSquares[i].textContent = "X";
+    }
+    else if(squares[i] === -1){
+      allSquares[i].textContent = "O"
+    } else if(squares[i] === null) {
+      allSquares[i].textContent = ""
+    }
+  }
+}
+
 function handleClick (event) {
 const index = event.target.id.replace('sq', '')
-if (squares[index] !== null){
+if (winner){
+  return
+}
+if (squares[i] !== null){
   return
 }
 squares[index] = turn
@@ -72,20 +89,6 @@ resetDiv.classList.remove("hidden")
   }
 
 
-
-function render(){
-  gameStatus.textContent = message
-  for (let i = 0; i < allSquares.length; i++) {
-    if(squares[i] === 1){
-      allSquares[i].textContent = "X";
-    }
-    else if(squares[i] === -1){
-      allSquares[i].textContent = "O"
-    } else if(squares[i] === null) {
-      allSquares[i].textContent = ""
-    }
-  }
-}
         
 function checkWinner(){
   winningCombos.forEach((winningCombo) => {
