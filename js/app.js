@@ -9,7 +9,7 @@ const winningCombos = [
   [6, 7, 8],
   [0, 3, 6],
   [1, 4, 7],
-  [2, 5, 6],
+  [2, 5, 8],
   [0, 4, 8],
   [6, 4, 2],
 ]
@@ -92,12 +92,14 @@ resetDiv.classList.remove("hidden")
         
 function checkWinner(){
   winningCombos.forEach((winningCombo) => {
-    if(Math.abs(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]]) === 3){
-    winner = 1
-    message = "Congratulations X, you are the champion"
-    } else if(Math.abs(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]]) === -3){
-    winner = -1
-    message = "Congratulations O, you are the champion"
+    if(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]] === 3){
+      console.log('x Wins')
+      winner = 1
+      message = "Congratulations X, you are the champion"
+    } else if(squares[winningCombo[0]] + squares[winningCombo[1]] + squares[winningCombo[2]] === -3){
+      console.log('O Wins')
+      winner = -1
+      message = "Congratulations O, you are the champion"
     }
     else if (turnCount === 9 && !winner){
     winner = 'T'
